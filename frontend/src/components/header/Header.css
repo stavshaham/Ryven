@@ -1,0 +1,44 @@
+.header {
+    color: black;
+    padding: 1rem;
+    height: 5vh;
+    display: grid;
+    place-items: center;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #FFFFFF;
+    height: 100%;
+    width: 30%;
+    border: black solid 1px;
+    border-radius: 30px;
+}
+
+.title {
+    text-align: center;
+    padding: 0.2rem 1rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: width 0.4s ease-in-out;
+}
+
+.title:hover {
+    transition: width 1s ease-in-out;
+}
+
+.title:hover::after {
+    width: 100%;
+}
