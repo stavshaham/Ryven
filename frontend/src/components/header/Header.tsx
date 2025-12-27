@@ -1,11 +1,32 @@
 import {useState} from "react";
 import "./Header.css"
 import logo from '../../assets/ryven_logo.png'
+import {Link} from "react-router-dom";
 
 function Header() {
-    const [active, setActive] = useState("Home")
-    const navItems = ["Home", "About", "Features", "Contact"]
-    const authItems = ["Login", "Register"]
+    const [active, setActive] = useState(0)
+    const [activeMobile, setActiveMobile] = useState(false);
+
+    const navItems = [
+        {id: 0, title: "Home", path: "/"},
+        {id: 1, title: "About", path: "/about"},
+        {id: 2, title: "Features", path: "/features"},
+        {id: 3, title: "Contact", path: "/contact"},
+    ]
+
+    const authItems = [
+        {id: 4, title: "Login", path: "/login"},
+        {id: 5, title: "Register", path: "/register"},
+    ]
+
+    const mobileNavItems = [
+        {id: 0, title: "Home", path: "/"},
+        {id: 1, title: "About", path: "/about"},
+        {id: 2, title: "Features", path: "/features"},
+        {id: 3, title: "Contact", path: "/contact"},
+        {id: 4, title: "Login", path: "/login"},
+        {id: 5, title: "Register", path: "/register"},
+    ]
 
     return (
         <header className={'header'}>
@@ -13,26 +34,47 @@ function Header() {
 
             <div className={'navigation'}>
                 {navItems.map(item => (
-                    <div
-                        key={item}
-                        className={`nav-item ${active === item ? "active" : ""}`}
-                        onClick={() => setActive(item)}
+                    <Link
+                        to={item.path}
+                        key={item.id}
+                        className={`nav-item ${active === item.id ? "active" : ""}`}
+                        onClick={() => setActive(item.id)}
                     >
-                        {item}
-                    </div>
+                        {item.title}
+                    </Link>
                 ))}
             </div>
 
             <div className={'auth-buttons'}>
                 {authItems.map(item => (
-                    <div
-                        key={item}
-                        className={`auth-button ${active === item ? "active" : ""}`}
-                        onClick={() => setActive(item)}
+                    <Link
+                        to={item.path}
+                        key={item.id}
+                        className={`auth-button ${active === item.id ? "active" : ""}`}
+                        onClick={() => setActive(item.id)}
                     >
-                        {item}
-                    </div>
+                        {item.title}
+                    </Link>
                 ))}
+            </div>
+
+            <div className={`mobile-menu ${activeMobile ? "active" : ""}`}>
+                {mobileNavItems.map(item => (
+                    <Link
+                        to={item.path}
+                        key={item.id}
+                        className={`mobile-nav-item ${active === item.id ? "active" : ""}`}
+                        onClick={() => setActive(item.id)}
+                    >
+                        {item.title}
+                    </Link>
+                ))}
+            </div>
+
+            <div className={`hamburger-menu ${activeMobile ? "active" : ""}`} onClick={() => setActiveMobile(!activeMobile)}>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </header>
     )
