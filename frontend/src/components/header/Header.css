@@ -1,7 +1,17 @@
+body {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 .header {
     color: black;
+    background-color: #1c1c1c;
     padding: 1rem;
     height: 5vh;
+    width: 100%;
+    position: sticky;
     display: flex;
     justify-content: space-between;
     place-items: center;
@@ -9,7 +19,7 @@
 
 a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 .logo {
@@ -25,24 +35,10 @@ a {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: #FFFFFF;
     height: 100%;
-    width: 30%;
+    width: 40%;
     border: #E94560 solid 2px;
     border-radius: 30px;
-}
-
-.auth-buttons {
-    visibility: visible;
-    margin-right: 2rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: transparent;
-    height: 100%;
-    width: 10%;
-    border-radius: 30px;
-    gap: 10px;
 }
 
 .nav-item {
@@ -50,6 +46,10 @@ a {
     padding: 0.2rem 1rem;
     cursor: pointer;
     position: relative;
+}
+
+.empty {
+    width: 15%;
 }
 
 .nav-item::after {
@@ -78,48 +78,22 @@ a {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 2px;
     width: 0;
     background-color: #E94560;
     transition: width 0.3s ease-in-out;
 }
 
-/* Hover effect */
 .nav-item.active:hover::after {
     width: 100%;
 }
 
-/* Active state uses the same line */
 .nav-item.active.active::after {
     width: 100%;
-}
-
-.auth-button {
-    border: 2px solid #E94560;
-    color: #E94560;
-    padding: 0.5rem 1.2rem;
-    border-radius: 20px;
-    text-decoration: none;
-    transition: background .5s ease, color .5s ease;
-    cursor: pointer;
-}
-
-/* Hover effect (optional, keeps outline but fills on hover) */
-.auth-button:hover {
-    background: #E94560;
-    color: white;
-
 }
 
 .mobile-menu {
     display: none;
     visibility: hidden;
-}
-
-/* Active/selected state */
-.auth-button.active {
-    background: #E94560;
-    color: white;
 }
 
 .hamburger-menu {
@@ -141,6 +115,7 @@ a {
     .hamburger-menu {
         visibility: visible;
         display: block;
+        margin-right: 5vh;
         height: 50px;
         width: 50px;
         margin-left: auto;
