@@ -9,12 +9,9 @@ function Header() {
 
     const navItems = [
         {id: 0, title: "Home", path: "/"},
-        {id: 1, title: "About", path: "/about"},
         {id: 2, title: "Features", path: "/features"},
+        {id: 1, title: "About", path: "/about"},
         {id: 3, title: "Contact", path: "/contact"},
-    ]
-
-    const authItems = [
         {id: 4, title: "Login", path: "/login"},
         {id: 5, title: "Register", path: "/register"},
     ]
@@ -45,19 +42,6 @@ function Header() {
                 ))}
             </div>
 
-            <div className={'auth-buttons'}>
-                {authItems.map(item => (
-                    <Link
-                        to={item.path}
-                        key={item.id}
-                        className={`auth-button ${active === item.id ? "active" : ""}`}
-                        onClick={() => setActive(item.id)}
-                    >
-                        {item.title}
-                    </Link>
-                ))}
-            </div>
-
             <div className={`mobile-menu ${activeMobile ? "active" : ""}`}>
                 {mobileNavItems.map(item => (
                     <Link
@@ -70,6 +54,8 @@ function Header() {
                     </Link>
                 ))}
             </div>
+
+            <div className={'empty'}></div>
 
             <div className={`hamburger-menu ${activeMobile ? "active" : ""}`} onClick={() => setActiveMobile(!activeMobile)}>
                 <span></span>

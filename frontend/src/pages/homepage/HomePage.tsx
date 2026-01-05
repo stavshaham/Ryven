@@ -1,8 +1,8 @@
+import Hero from "../../components/hero/Hero.tsx";
+
 function HomePage() {
     return (
-        <>
-            This is the Home Page
-        </>
+        <Hero />
     )
 }
 
