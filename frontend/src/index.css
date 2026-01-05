@@ -5,3 +5,8 @@
 
     background: #161515;
 }
+
+
+html {
+    scroll-behavior: smooth;
+}

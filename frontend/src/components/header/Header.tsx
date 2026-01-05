@@ -2,26 +2,27 @@ import {useState} from "react";
 import "./Header.css"
 import logo from '../../assets/ryven_logo.png'
 import {Link} from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 
 function Header() {
     const [active, setActive] = useState(0)
     const [activeMobile, setActiveMobile] = useState(false);
 
     const navItems = [
-        {id: 0, title: "Home", path: "/"},
-        {id: 2, title: "Features", path: "/features"},
-        {id: 1, title: "About", path: "/about"},
-        {id: 3, title: "Contact", path: "/contact"},
+        {id: 0, title: "Home", path: "/#hero"},
+        {id: 2, title: "Features", path: "/#features"},
+        {id: 1, title: "About", path: "/#about"},
+        {id: 3, title: "Contact", path: "/#contact"},
         {id: 4, title: "Login", path: "/login"},
         {id: 5, title: "Register", path: "/register"},
     ]
 
     const mobileNavItems = [
         {id: 0, title: "Home", path: "/"},
-        {id: 1, title: "About", path: "/about"},
-        {id: 2, title: "Features", path: "/features"},
-        {id: 3, title: "Contact", path: "/contact"},
-        {id: 4, title: "Login", path: "/login"},
+        {id: 1, title: "About", path: "#about"},
+        {id: 2, title: "Features", path: "/#features"},
+        {id: 3, title: "Contact", path: "/#contact"},
+        {id: 4, title: "Login", path: "#login"},
         {id: 5, title: "Register", path: "/register"},
     ]
 
@@ -31,14 +32,15 @@ function Header() {
 
             <div className={'navigation'}>
                 {navItems.map(item => (
-                    <Link
+                    <HashLink
+                        smooth
                         to={item.path}
                         key={item.id}
-                        className={`nav-item ${active === item.id ? "active" : ""}`}
+                        className={`nav-item ${active === item.id ? 'active' : ''}`}
                         onClick={() => setActive(item.id)}
                     >
                         {item.title}
-                    </Link>
+                    </HashLink>
                 ))}
             </div>
 
