@@ -3,7 +3,7 @@ import './Hero.css';
 
 function Hero() {
     return (
-        <section className="hero">
+        <section className="hero" id="hero">
             <h1 className="hero-title">Connect. Chat. <span className={'brand'}> <br />Ryven.</span></h1>
             <p className={'hero-subtitle'}>A modern chat experience built for speed and simplicity.</p>
 

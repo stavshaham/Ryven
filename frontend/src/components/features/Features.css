@@ -1,0 +1,134 @@
+:root {
+    --f-bg: #2E2E2E;          /* page bg, matches your header */
+    --f-card: #353535;        /* card surface */
+    --f-text: #FFFFFF;
+    --f-text-dim: #CCCCCC;
+    --f-brand: #E94560;       /* Ryven red */
+    --f-brand-2: #FF6F61;     /* hover red */
+    --f-border: rgba(255,255,255,0.12);
+    --f-shadow: rgba(0,0,0,0.6);
+    --f-radius: 14px;
+    --f-max: 1500px;
+    --stagger: 0ms;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* If you have a sticky header, offset the anchor scroll */
+#features {
+    scroll-margin-top: 80px; /* set to your header height */
+}
+
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .features *,
+    .features *::before,
+    .features *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Section container */
+.features {
+    color: var(--f-text);
+    padding: 4rem 1.5rem;
+    max-width: var(--f-max);
+    margin: 0 auto;
+}
+
+/* Header */
+.features__header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.features__title {
+    margin: 0;
+    font-size: clamp(1.8rem, 4.5vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+.features__subtitle {
+    margin: 0.6rem auto 0;
+    color: var(--f-text-dim);
+    max-width: 720px;
+    font-size: 1.05rem;
+}
+
+/* Grid */
+.features__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+/* Card */
+.feature-card {
+    position: relative;
+    background: var(--f-card);
+    border: 1px solid var(--f-border);
+    border-radius: var(--f-radius);
+    padding: 1rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    overflow: hidden;
+
+    /* entry animation (staggered via inline style) */
+    opacity: 0;
+    transform: translateY(14px);
+    animation: cardIn 520ms ease forwards;
+    animation-delay: var(--stagger, 0ms);
+
+    transition: transform 180ms ease, box-shadow 220ms ease, border-color 200ms ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.35);
+    border-color: rgba(233,69,96,0.35);
+}
+
+/* Accent strip (brand) */
+.feature-card__accent {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--f-brand), var(--f-brand-2));
+    opacity: 0.85;
+}
+
+/* Icon + text */
+.feature-card__icon {
+    font-size: 1.6rem;
+}
+.feature-card__title {
+    margin: 0.4rem 0 0.25rem;
+    font-weight: 700;
+    font-size: 1.15rem;
+}
+.feature-card__desc {
+    margin: 0;
+    color: var(--f-text-dim);
+    line-height: 1.5;
+}
+
+/* Keyframes */
+@keyframes cardIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .features__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 640px) {
+    .features__grid {
+        grid-template-columns: 1fr;
+    }
+}
