@@ -40,7 +40,7 @@ export default function Contact() {
 
         // Checking that the subject is not empty
         if (!values.subject.trim()) newErrors.subject = "Please enter a subject.";
-        // CHecking that the message has at least 10 characters
+        // Checking that the message has at least 10 characters
         if (!values.message.trim() || values.message.trim().length < 10) {
             newErrors.message = "Please enter a message (at least 10 characters).";
         }
@@ -77,12 +77,15 @@ export default function Contact() {
 
             // TODO: Replace with your backend endpoint
             // Example:
-            // const res = await fetch("/api/contact", {
-            //   method: "POST",
-            //   headers: { "Content-Type": "application/json" },
-            //   body: JSON.stringify(form),
-            // });
-            // if (!res.ok) throw new Error("Failed to send");
+            const res = await fetch("http://127.0.0.1:5000/contact/send", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(form),
+            });
+
+            console.log(res);
+
+            if (!res.ok) throw new Error("Failed to send");
 
             // Simulate success (remove this when you hook backend)
             await new Promise(r => setTimeout(r, 800));
