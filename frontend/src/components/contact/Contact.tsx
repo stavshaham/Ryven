@@ -75,7 +75,6 @@ export default function Contact() {
             setStatus("sending");
             setStatusMessage("Sending…");
 
-            // TODO: Replace with your backend endpoint
             // Example:
             const res = await fetch("http://127.0.0.1:5000/contact/send", {
               method: "POST",
@@ -83,7 +82,15 @@ export default function Contact() {
               body: JSON.stringify(form),
             });
 
-            console.log(res);
+            let payload, message;
+
+            try {
+                payload = await res.json();
+                message = payload.message;
+            } catch (e) {
+                payload = `Error: ${e}`;
+                message = payload;
+            }
 
             if (!res.ok) throw new Error("Failed to send");
 
@@ -91,7 +98,8 @@ export default function Contact() {
             await new Promise(r => setTimeout(r, 800));
 
             setStatus("success");
-            setStatusMessage("Thanks! Your message has been sent.");
+            console.log(res);
+            setStatusMessage(message);
             setForm(initialState);
             setErrors({});
         } catch (err) {
